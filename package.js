@@ -17,7 +17,7 @@ const meteorPackagesUsed = [
   'mongo',
   'http',
   'dburles:mongo-collection-instances@0.3.5',
-  'matb33:collection-hooks',
+  'matb33:collection-hooks@0.8.1',
 ];
 
 Package.onUse(function (api) {  // eslint-disable-line func-names, prefer-arrow-callback
