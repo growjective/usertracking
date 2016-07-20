@@ -10,18 +10,15 @@ function trackAlive() {
   const page = makePage(flowRouter.current());
   page.state = currentState;
   trackEvent('ALIVE', page, user);
-  console.log(currentState);
 }
-
-ifvisible.setIdleDuration(5);
 
 export function poll() {
   setTimeout(() => {
     if (currentState === 'ACTIVE') {
       trackAlive();
-      poll();
     }
-  }, 1000);
+    poll();
+  }, 300000);
 }
 
 export function initTrackAlive() {

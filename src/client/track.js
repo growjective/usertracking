@@ -32,5 +32,4 @@ export function trackEvent(event, data, user) {
   };
 
   sendData(eventData);
-  console.log('trackEvent', eventData, user);   // eslint-disable-line no-console
 }
