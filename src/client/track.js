@@ -28,7 +28,7 @@ export function trackEvent(event, data, user) {
   const eventData = {
     event,
     data,
-    user,
+    userId: user ? user._id : null,
   };
 
   sendData(eventData);
