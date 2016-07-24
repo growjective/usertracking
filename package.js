@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 Package.describe({
   name: 'growjective:usertracking',
-  version: '0.0.1',
+  version: '0.0.2',
   summary: 'URL and collection hooks for Orion',
   documentation: 'README.md',
 });
