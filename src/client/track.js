@@ -1,17 +1,15 @@
 /* eslint-disable import/no-unresolved */
-import { Meteor } from 'meteor/meteor';
 import { $ } from 'meteor/jquery';
-import _ from 'lodash';
 import getRemoteUrl from '../lib/getRemoteUrl';
+import getSettings from '../lib/getSettings';
 
 const remoteUrl = getRemoteUrl('events');
 
 export function sendData(data) {
-  const appKey = _.has(Meteor, 'settings.public.growjective.appKey') ?
-    Meteor.settings.public.growjective.appKey : null;
+  const { appKey, flag } = getSettings();
 
-  if (appKey) {
-    const payload = Object.assign(data, { appKey });
+  if (appKey && flag) {
+    const payload = Object.assign(data, { appKey, flag });
 
     $.ajax({
       type: 'POST',
