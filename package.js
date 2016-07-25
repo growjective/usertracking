@@ -2,7 +2,7 @@
 Package.describe({
   name: 'growjective:usertracking',
   version: '0.0.3',
-  summary: 'URL and collection hooks for Orion',
+  summary: 'URL and collection hooks for Growjective',
   documentation: 'README.md',
   git: 'https://github.com/growjective/usertracking',
 });
