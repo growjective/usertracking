@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 Package.describe({
   name: 'growjective:usertracking',
-  version: '0.0.3',
+  version: '0.0.4',
   summary: 'URL and collection hooks for Growjective',
   documentation: 'README.md',
   git: 'https://github.com/growjective/usertracking',
