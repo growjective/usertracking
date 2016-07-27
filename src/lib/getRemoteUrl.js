@@ -1,8 +1,11 @@
 /* eslint-disable import/no-unresolved */
 import { Meteor } from 'meteor/meteor';
+import _ from 'lodash';
 
-// export const devUrl = 'http://localhost:4000/api/';
-export const devUrl = 'https://www.growjective.com/api/';
+const devServer = _.has(Meteor, 'settings.public.growjective.devServer') ?
+  Meteor.settings.public.growjective.devServer : null;
+
+export const devUrl = devServer ? 'http://localhost:4000/api/' : 'https://www.growjective.com/api/';
 export const prodUrl = 'https://www.growjective.com/api/';
 
 export default function getRemoteUrl(route = '') {
