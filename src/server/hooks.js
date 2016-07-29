@@ -6,7 +6,9 @@ import { Mongo } from 'meteor/mongo';
 import transform from '../lib/userObjTransform';
 import getRemoteUrl from '../lib/getRemoteUrl';
 
-const remoteUrl = getRemoteUrl('trackedUsers');
+const trackedUsersUrl = getRemoteUrl('trackedUsers');
+const eventsUrl = getRemoteUrl('events');
+
 const appKey = _.has(Meteor, 'settings.public.growjective.appKey') ?
   Meteor.settings.public.growjective.appKey : null;
 
@@ -18,9 +20,7 @@ export function initHooks() {
       appKey,
     };
 
-    console.log('users after insert', users);
-
-    HTTP.post(remoteUrl, { data: payload }, (error) => {
+    HTTP.post(trackedUsersUrl, { data: payload }, (error) => {
       // eslint-disable-next-line no-console
       if (error) console.error('error', error);
     });
@@ -33,18 +33,19 @@ export function initHooks() {
         const data = {
           collectionName: collection.name,
           docId: doc._id,
-          userId: doc.userId,
-          createdAt: new Date(),
         };
 
         const payload = {
-          data: JSON.stringify(data),
+          data,
+          event: 'COLLECTION_INSERT',
+          userId: userId ? userId : null, // eslint-disable-line no-unneeded-ternary
           appKey,
         };
-        console.log(payload);
+
+        HTTP.post(eventsUrl, { data: payload }, err => {
+          if (err) console.error('error', err);
+        });
       });
     }
-
-    console.log(collection.name);
   });
 }
