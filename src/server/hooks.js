@@ -25,4 +25,26 @@ export function initHooks() {
       if (error) console.error('error', error);
     });
   });
+
+  const collections = Mongo.Collection.getAll();
+  collections.forEach(collection => {
+    if (collection.name !== 'users') {
+      collection.instance.after.insert((userId, doc) => {
+        const data = {
+          collectionName: collection.name,
+          docId: doc._id,
+          userId: doc.userId,
+          createdAt: new Date(),
+        };
+
+        const payload = {
+          data: JSON.stringify(data),
+          appKey,
+        };
+        console.log(payload);
+      });
+    }
+
+    console.log(collection.name);
+  });
 }
