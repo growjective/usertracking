@@ -29,6 +29,7 @@ export function trackEvent(event, data, user) {
     event,
     data,
     userId: user ? user._id : null,
+    userHex: user ? user.hex : null,
   };
 
   sendData(eventData);

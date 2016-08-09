@@ -1,6 +1,8 @@
 /* eslint-disable import/no-unresolved, no-underscore-dangle */
 import { Meteor } from 'meteor/meteor';
 import { trackEvent } from './track';
+import { getUserHex } from './session';
+import store from 'store2';
 
 let initialized;
 let user = null;  // eslint-disable-line import/no-mutable-exports
@@ -11,6 +13,12 @@ export function trackLogins() {
   if (Meteor.userId()) {
     user = {
       _id: Meteor.userId(),
+      hex: getUserHex(),
+    };
+  } else {
+    user = {
+      _id: null,
+      hex: getUserHex(),
     };
   }
 
