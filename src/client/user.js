@@ -13,12 +13,12 @@ export function trackLogins() {
   if (Meteor.userId()) {
     user = {
       _id: Meteor.userId(),
-      hex: getUserHex(),
+      browserSessionId: getUserHex(),
     };
   } else {
     user = {
       _id: null,
-      hex: getUserHex(),
+      browserSessionId: getUserHex(),
     };
   }
 
