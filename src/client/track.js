@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { $ } from 'meteor/jquery';
 import _ from 'lodash';
 import getRemoteUrl from '../lib/getRemoteUrl';
+import { getUserHex } from './session';
 
 const remoteUrl = getRemoteUrl('events');
 
@@ -29,6 +30,7 @@ export function trackEvent(event, data, user) {
     event,
     data,
     userId: user ? user._id : null,
+    browserSessionId: getUserHex(),
   };
 
   sendData(eventData);

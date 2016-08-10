@@ -10,6 +10,7 @@ Package.describe({
 Npm.depends({
   'ifvisible.js': '1.0.6',
   lodash: '4.13.1',
+  store2: '2.3.2',
 });
 
 const meteorPackagesUsed = [
